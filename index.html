@@ -21,7 +21,6 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/BlazorAnimate/blazorAnimateInterop.js"></script>
     <script src="_content/Cloudcrate.AspNetCore.Blazor.Browser.Storage/Storage.js"></script>
     <script src="Camera.js"></script>
     <script type="text/javascript">
@@ -53,18 +52,5 @@
             }
         }(window.location))
     </script>
-    <script>
-        window.scrollToElementId = (elementId) => {
-            console.info('scrolling to element', elementId);
-            var element = document.getElementById(elementId);
-            if (!element) {
-                console.warn('element was not found', elementId);
-                return false;
-            }
-            element.scrollIntoView();
-            return true;
-        }
-    </script>
 </body>
-
 </html>
