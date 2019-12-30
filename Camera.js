@@ -1,27 +1,31 @@
-﻿function runCamera(elementId, constrains = { video: { facingMode: "environment" } }) {
+﻿function runCamera(video, constrains = { video: { facingMode: "environment" } }) {
     try {
-        var video = document.getElementById(elementId);
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        //var video = document.getElementById(elementId); // Получили элемент
+        if (video !== undefined) { // Если не пусто
+            if (video.srcObject != null) { // проверяем src
+                video.srcObject.getVideoTracks().forEach(track => track.stop()); // останавливаем старые потоки
+            }
+        }
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) { // Получаем доступ к камере
             navigator.mediaDevices.getUserMedia(constrains).then(function (stream) {
-                video.srcObject = stream;
-                video.play();
+                video.srcObject = stream; // задаём src
+                video.play(); // проигрываем поток
             });
         }
     }
     catch (err) {
-        alert(err.Message)
+        alert(err.Message);
     }
 }
 
-function stopStream(elementId) {
+function takePhoto(canvas, video) {
     try {
-        var video = document.getElementById(elementId);
-        if (video !== undefined) {
-            if (video.srcObject != null) {
-                video.srcObject.getVideoTracks().forEach(track => track.stop());
-            }
-        }
-    } catch (err) {
-        alert(err);
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+        return canvas.toDataURL("image/webp"); 
+    }
+    catch (err) {
+        alert(err.Message);
     }
 }
