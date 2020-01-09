@@ -63,9 +63,8 @@ const requiredFiles = [
 "/sample-data/weather.json",
 "/ServiceWorkerRegister.js",
 "/manifest.json",
-"_content/BlazorAnimate/blazorAnimateInterop.js",
 "_content/Cloudcrate.AspNetCore.Blazor.Browser.Storage/Storage.js",
-"Camera.js"
+"/Camera.js"
 ];
 // * listen for the install event and pre-cache anything in filesToCache * //
 self.addEventListener(swInstallEvent, event => {
