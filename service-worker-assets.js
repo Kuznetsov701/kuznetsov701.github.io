@@ -253,7 +253,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-hPGfwFvTWbupq+KPAD1gDYHJ8GozSuJUAg2cBlv\/Hns=",
+      "hash": "sha256-\/HRlNS+uc0okTT2E3oQ6nnGyOCrePLyO7VMObk7oFzQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -261,5 +261,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "ibMA1TpM"
+  "version": "lJQIgl\/T"
 };
