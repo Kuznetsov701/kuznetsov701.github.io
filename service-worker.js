@@ -17,7 +17,11 @@ async function onInstall(event) {
     const assetsRequests = self.assetsManifest.assets
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-        .map(asset => new Request(asset.url + '?' + self.assetsManifest.version));
+        .map(asset => {
+            if(asset.url.includes('index.html'))
+                return new Request(asset.url);
+            return new Request(asset.url + '?' + self.assetsManifest.version);
+        });
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
     self.skipWaiting();
 }
@@ -50,4 +54,4 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: OtebZsj12 */
+/* Manifest version: Otebsfg17 */
