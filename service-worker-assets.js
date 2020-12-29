@@ -633,5 +633,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "OtebZsj\/"
+  "version": "OtebZsj12"
 };
