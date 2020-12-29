@@ -41,7 +41,7 @@ async function onFetch(event) {
 
         let request = shouldServeIndexHtml ? 'index.html' : event.request;
 
-        if (request.url && self.assetsManifest.assets.some(pattern => request.url.toString().includes(pattern.url)))
+        if (!shouldServeIndexHtml && request.url && self.assetsManifest.assets.some(pattern => request.url.toString().includes(pattern.url)))
             request = new Request(request.url.toString() + '?' + self.assetsManifest.version, request);
 
         const cache = await caches.open(cacheName);
