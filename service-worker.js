@@ -17,7 +17,11 @@ async function onInstall(event) {
     const assetsRequests = self.assetsManifest.assets
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-        .map(asset => new Request(asset.url));
+        .map(asset => {
+            if(asset.url.includes('index.html'))
+                return new Request(asset.url);
+            return new Request(asset.url + '?' + self.assetsManifest.version);
+        });
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
     self.skipWaiting();
 }
@@ -39,11 +43,15 @@ async function onFetch(event) {
         // If you need some URLs to be server-rendered, edit the following check to exclude those URLs
         const shouldServeIndexHtml = event.request.mode === 'navigate';
 
-        const request = shouldServeIndexHtml ? 'index.html' : event.request;
+        let request = shouldServeIndexHtml ? 'index.html' : event.request;
+
+        if (!shouldServeIndexHtml && request.url && self.assetsManifest.assets.some(pattern => request.url.toString().includes(pattern.url)))
+            request = new Request(request.url.toString() + '?' + self.assetsManifest.version, request);
+
         const cache = await caches.open(cacheName);
         cachedResponse = await cache.match(request);
     }
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: ver3 */
+/* Manifest version: ver4 */
