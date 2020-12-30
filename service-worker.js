@@ -17,11 +17,7 @@ async function onInstall(event) {
     const assetsRequests = self.assetsManifest.assets
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-        .map(asset => {
-            if(asset.url.includes('index.html'))
-                return new Request(asset.url);
-            return new Request(asset.url + '?' + self.assetsManifest.version);
-        });
+        .map(asset => new Request(asset.url + '?' + self.assetsManifest.version));
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
     self.skipWaiting();
 }
@@ -33,7 +29,11 @@ async function onActivate(event) {
     const cacheKeys = await caches.keys();
     await Promise.all(cacheKeys
         .filter(key => key.startsWith(cacheNamePrefix) && key !== cacheName)
-        .map(key => caches.delete(key)));
+        .map(asset => {
+            if (asset.url.includes('index.html'))
+                return new Request(asset.url);
+            return new Request(asset.url + '?' + self.assetsManifest.version);
+        });
 }
 
 async function onFetch(event) {
@@ -48,10 +48,11 @@ async function onFetch(event) {
         if (!shouldServeIndexHtml && request.url && self.assetsManifest.assets.some(pattern => request.url.toString().includes(pattern.url)))
             request = new Request(request.url.toString() + '?' + self.assetsManifest.version, request);
 
+
         const cache = await caches.open(cacheName);
         cachedResponse = await cache.match(request);
     }
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: ver4 */
+/* Manifest version: OtebZsj/ */
