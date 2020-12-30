@@ -33,7 +33,7 @@ async function onActivate(event) {
             if (asset.url.includes('index.html'))
                 return new Request(asset.url);
             return new Request(asset.url + '?' + self.assetsManifest.version);
-        });
+        }));
 }
 
 async function onFetch(event) {
