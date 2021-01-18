@@ -187,8 +187,8 @@
       "Microsoft.JSInterop.dll": "sha256-0o\/vt4NH\/VfmWZxWcdLsy7WlafnyiNlCMmFoL1QmfMg=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-5AkXTXHIeXryrSr97JWjBrndsRjoslMVJ8e7FqupHUw=",
       "System.IO.Pipelines.dll": "sha256-qj+ITVhmJUAkSBctDayU4uUjNTKdXqAbF2zAxo7\/mkM=",
-      "DataAccessLanguage.dll": "sha256-evWS8cnecKAs\/YOlxRRVbDMz2yZm7Vf6b5Wt4n+Fv5w=",
-      "DataAccessLanguage.Demo.Blazor.dll": "sha256-8gO8sbZReR7Epvr9RhfKOkUlfu4GLx+8vPu+Oc68fgw="
+      "DataAccessLanguage.dll": "sha256-bUh9P+mIlosv27gycEGNC1\/C3pE+MwqosGuVOTVLcFY=",
+      "DataAccessLanguage.Demo.Blazor.dll": "sha256-0wj0P0pNjPLmjto\/s3GPYpBkOOAciWV0LI24e3W4Zlg="
     },
     "lazyAssembly": null,
     "pdb": null,
